@@ -2,7 +2,18 @@
 
 // Adapted from: https://github.com/barryvdh/laravel-translation-manager/blob/master/src/Manager.php
 $translationKeys = [];
-$functions = ['@lang', '__'];
+$functions = [
+    'trans',
+    'trans_choice',
+    'Lang::get',
+    'Lang::choice',
+    'Lang::trans',
+    'Lang::transChoice',
+    '@lang',
+    '@choice',
+    '__',
+    '$trans.get',
+];
 $stringPattern =
     "[^\w]" .                                       // Must not have an alphanum before real method
     '(' . implode('|', $functions) . ')' .          // Must start with one of the functions
