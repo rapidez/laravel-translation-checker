@@ -12,12 +12,6 @@ $stringPattern =
     "\k{quote}" .                                   // Match " or ' previously matched
     "\s*[\),]";                                     // Close parentheses or new parameter
 
-$labelPattern =
-    "label=" .                                      // Match `label=`
-    "(?P<quote>['\"])" .                            // Match " or ' and store in {quote}
-    "(?P<string>(?:\\\k{quote}|(?!\k{quote}).)*)" . // Match any string that can be {quote} escaped
-    "\k{quote}";                                    // Match " or ' previously matched
-
 $files = [];
 $iterator = new RecursiveDirectoryIterator('resources');
 foreach (new RecursiveIteratorIterator($iterator) as $file) {
@@ -30,20 +24,6 @@ foreach ($files as $file) {
     $contents = file_get_contents($file);
     if (preg_match_all("/{$stringPattern}/siU", $contents, $matches)) {
         foreach ($matches['string'] as $key) {
-            $translationKeys[] = $key;
-        }
-    }
-    if (preg_match_all("/{$labelPattern}/siU", $contents, $matches)) {
-        foreach ($matches['string'] as $key) {
-            if (
-                str_starts_with($key, '{{')
-                || str_starts_with($key, '@lang(')
-                || str_starts_with($key, '__(')
-                || $key == 'false'
-                || ! $key
-            ) {
-                continue;
-            }
             $translationKeys[] = $key;
         }
     }

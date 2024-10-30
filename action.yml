@@ -1,4 +1,5 @@
 name: Check translations
+description: Checks if all the used translation strings actually have a translation
 
 runs:
   using: "composite"
