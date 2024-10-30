@@ -1,5 +1,5 @@
-name: Check translations
-description: Checks if all the used translation strings actually have a translation
+name: Laravel translation checker
+description: Checks if all the used translation strings in your Laravel project actually have a translation
 branding:
   icon: 'file-text'
   color: 'green'
