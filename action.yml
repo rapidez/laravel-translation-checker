@@ -1,5 +1,8 @@
 name: Check translations
 description: Checks if all the used translation strings actually have a translation
+branding:
+  icon: 'file-text'
+  color: 'green'
 
 runs:
   using: "composite"
