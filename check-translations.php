@@ -24,6 +24,12 @@ $stringPattern =
     "\s*[\),]";                                     // Close parentheses or new parameter
 
 $files = [];
+
+if (! is_dir('resources')) {
+    error_log('Resources folder doesn\'t exist.');
+    exit();
+}
+
 $iterator = new RecursiveDirectoryIterator('resources');
 foreach (new RecursiveIteratorIterator($iterator) as $file) {
     if (strpos($file, '.blade.php') !== false) {
@@ -44,7 +50,7 @@ $languages = glob('lang/*.json');
 
 if (! $languages) {
     error_log('No language files found.');
-    exit(2);
+    exit();
 }
 
 $missing = [];
